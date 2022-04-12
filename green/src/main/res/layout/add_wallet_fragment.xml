@@ -14,6 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -130,13 +131,14 @@
                 android:id="@+id/buttonWatchOnly"
                 style="@style/Widget.Green.Button.Outlined"
                 isVisible="@{!vm.isDeviceOnboarding}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:enabled="@{vm.termsChecked}"
                 android:text="@string/id_watchonly_wallet"
                 app:icon="@drawable/ic_watch_18"
                 app:iconGravity="start"
-                app:iconPadding="-18dp" />
+                app:iconPadding="-18dp"
+                android:visibility="gone"/>
 
         </com.blockstream.green.views.GappedLinearLayout>
 

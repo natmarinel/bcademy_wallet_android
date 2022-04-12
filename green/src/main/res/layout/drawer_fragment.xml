@@ -23,14 +23,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="84dp"
+            android:layout_height="150dp"
             android:background="@color/brand_background"
             android:paddingLeft="16dp">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="100dp"
                 android:layout_gravity="left|center"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -79,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:text="@string/id_app_settings"
+                    android:visibility="gone"
                     android:textColor="@color/color_on_surface_emphasis_low"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"

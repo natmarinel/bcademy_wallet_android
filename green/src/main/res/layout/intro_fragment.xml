@@ -16,8 +16,8 @@
         <ImageView
             android:id="@+id/logo"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_marginBottom="24dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="0dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout"
@@ -43,7 +43,8 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:fillViewport="true">
+                android:fillViewport="true"
+                >
 
                 <include
                     android:id="@+id/common"
@@ -64,10 +65,12 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="Build 3.14.00" />
+            tools:text="Build 3.14.00"
+            android:visibility="gone"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -79,11 +82,12 @@
             isGone="@{vm.onProgress}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="0dp"
             android:enabled="@{!vm.onProgress}"
             android:text="@string/id_app_settings"
             android:textColor="@color/color_on_surface_emphasis_low"
-            android:textSize="12sp"
+            android:textSize="0sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
