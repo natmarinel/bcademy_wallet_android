@@ -9,6 +9,48 @@
     tools:ignore="HardcodedText">
 
     <LinearLayout
+        android:id="@+id/row4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/word1"
+            style="@style/RecoveryPhraseKeyboardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WORD1"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/word2"
+            style="@style/RecoveryPhraseKeyboardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="WORD2"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/word3"
+            style="@style/RecoveryPhraseKeyboardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WORD2"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/word4"
+            style="@style/RecoveryPhraseKeyboardButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WORD2"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/row1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -170,7 +212,8 @@
         android:id="@+id/row3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="30dp">
 
         <Space
             android:layout_width="0dp"
@@ -237,46 +280,6 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/row4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/word1"
-            style="@style/RecoveryPhraseKeyboardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WORD1"
-            android:textSize="16sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/word2"
-            style="@style/RecoveryPhraseKeyboardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:text="WORD2"
-            android:textSize="16sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/word3"
-            style="@style/RecoveryPhraseKeyboardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WORD2"
-            android:textSize="16sp" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/word4"
-            style="@style/RecoveryPhraseKeyboardButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WORD2"
-            android:textSize="16sp" />
-
-    </LinearLayout>
 
 </LinearLayout>
