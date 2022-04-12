@@ -268,7 +268,7 @@
             android:text="@string/id_app_settings"
             android:visibility="gone"
             android:textColor="@color/color_on_surface_emphasis_low"
-            android:textSize="12sp"
+            android:textSize="0sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
