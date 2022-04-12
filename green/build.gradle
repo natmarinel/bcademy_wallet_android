@@ -37,21 +37,21 @@ android {
         development {
             applicationId "com.greenaddress.greenbits_android_wallet.dev"
             versionNameSuffix "-dev" + appendGdkCommitHash()
-            resValue "string", "app_name", "Green Dev"
+            resValue "string", "app_name", "Bcademy Wallet"
             resValue "string", "application_id", applicationId
             manifestPlaceholders = [
-                    appIcon: "@mipmap/ic_launcher_dev",
-                    appIconRound: "@mipmap/ic_launcher_dev_round"
+                    appIcon: "@mipmap/ic_launcher_bcademy",
+                    appIconRound: "@mipmap/ic_launcher_bcademy_round"
             ]
         }
 
         production {
             applicationId "com.greenaddress.greenbits_android_wallet"
-            resValue "string", "app_name", "Green"
+            resValue "string", "app_name", "Bcademy Wallet"
             resValue "string", "application_id", applicationId
             manifestPlaceholders = [
-                    appIcon: "@mipmap/ic_launcher",
-                    appIconRound: "@mipmap/ic_launcher_round"
+                    appIcon: "@mipmap/ic_launcher_bcademy",
+                    appIconRound: "@mipmap/ic_launcher_bcademy_round"
             ]
         }
     }
