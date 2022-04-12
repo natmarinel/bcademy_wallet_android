@@ -2,13 +2,13 @@
 <resources>
 
     <!--  Main Brand colors  -->
-    <color name="brand_green">#ff00b45a</color>
-    <color name="brand_green_dark">#ff00832e</color>
+    <color name="brand_green">#8FB6CB</color>
+    <color name="brand_green_dark">#C1CFD7</color>
 
-    <color name="brand_surface">#19222c</color>
-    <color name="brand_surface_light">#273545</color>
-    <color name="brand_surface_light_variant">#475361</color>
-    <color name="brand_background">#12161f</color>
+    <color name="brand_surface">#2C2E30</color>
+    <color name="brand_surface_light">#1D1E20</color>
+    <color name="brand_surface_light_variant">#2C2E30</color>
+    <color name="brand_background">#1D1E20</color>
 
     <color name="brand_surface_variant">#14161D</color>
 
