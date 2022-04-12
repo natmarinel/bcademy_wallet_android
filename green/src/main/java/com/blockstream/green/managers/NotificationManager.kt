@@ -145,7 +145,7 @@ class NotificationManager constructor(
         return NotificationCompat.Builder(context, WALLETS_CHANNEL_ID)
             .setContentTitle(wallet.name)
             .setColorized(true)
-            .setSmallIcon(R.drawable.ic_stat_green)
+            .setSmallIcon(R.drawable.ic_stat_bcademy)
             .setContentIntent(pendingIntent)
             .setColor(ContextCompat.getColor(context, wallet.network.getNetworkColor()))
             .setOngoing(true)
