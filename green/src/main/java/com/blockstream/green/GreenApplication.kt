@@ -1,6 +1,7 @@
 package com.blockstream.green
 
 import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
@@ -56,7 +57,12 @@ class GreenApplication : Application(){
 
     @Inject
     lateinit var notificationManager: NotificationManager
-
+    companion object {
+        @JvmStatic lateinit var context: GreenApplication
+    }
+    init {
+        context=this
+    }
     override fun onCreate() {
         super.onCreate()
 

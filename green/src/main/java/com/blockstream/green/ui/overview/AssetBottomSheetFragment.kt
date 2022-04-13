@@ -1,8 +1,13 @@
 package com.blockstream.green.ui.overview
 
 import Api
+import Cache
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.blockstream.green.R
 import com.blockstream.green.databinding.AssetDetailsBottomSheetBinding
@@ -19,6 +24,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.json.JSONObject
+import java.util.concurrent.Executors
 
 
 @AndroidEntryPoint
@@ -62,7 +68,6 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
             list += balanceListItem
         }else{
             list += OverlineTextListItem(StringHolder(R.string.id_asset_id), StringHolder(assetId))
-            list += OverlineTextListItem(StringHolder(R.string.id_immaginina), StringHolder(assetId))
             list += balanceListItem
             list += OverlineTextListItem(StringHolder(R.string.id_precision), StringHolder((asset?.precision ?: 0).toString()))
             list += OverlineTextListItem(StringHolder(R.string.id_ticker), StringHolder(asset?.ticker ?: getString(R.string.id_no_registered_ticker_for_this)))
@@ -74,7 +79,14 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         val BASE_URL="https://btender.bcademy.xyz/"
         val cicciaassetId=assetId
         if(assetId == "ca733301ae5b406d66f3a6a55f9d61917f24acc54641becaab1be478bba8e826") {
-            //CONTROLLO SE L'IMMAGINE DI QUELL'ASSET E' PRESENTE NELLA CACHE
+
+
+
+
+
+
+
+
             val cicciaassetId = id_nft_rosso
 
             val json = Api().getJsonString(cicciaassetId)
@@ -95,7 +107,32 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
 
                     val intent = Intent(context?.applicationContext, NftViewer::class.java)
                     intent.putExtra("nftUrl", nftUrl)
+                    intent.putExtra("nftId",cicciaassetId)
                     startActivity(intent)
+                    /*val cache: Cache? =null
+                    val executor = Executors.newSingleThreadExecutor()
+
+                    // Initializing the image
+                    var image: Bitmap?=null
+                    executor.execute{
+                        val `in` = java.net.URL(nftUrl as String?).openStream()
+                        image = BitmapFactory.decodeStream(`in`)
+                    }*/
+
+                    /*executor.execute {
+
+                        try {
+                            val `in` = java.net.URL(nftUrl as String?).openStream()
+                            image = BitmapFactory.decodeStream(`in`)
+                            val uri=cache?.saveToCacheAndGetUri(BitmapFactory.decodeStream(`in`),nftUrl)
+                            println("questo uri della cache $uri")
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }*/
+                    /*val intent = Intent(context?.applicationContext, NftViewer::class.java)
+                    intent.putExtra("nft",image)
+                    startActivity(intent)*/
                 }
             }
         }
