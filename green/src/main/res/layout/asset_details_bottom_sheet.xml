@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
+        <variable
+            name="isVisible"
+            type="boolean"/>
 
     </data>
 
@@ -37,6 +42,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title" />
+
+        <ImageView
+            android:id="@+id/nftcontent"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:visibility="@{isVisible ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"

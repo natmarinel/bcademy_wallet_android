@@ -24,49 +24,16 @@ class NftViewer : AppCompatActivity() {
         setContentView(R.layout.nft)
 
         val nftView = findViewById<ImageView>(R.id.nft)
+        val handler = Handler(Looper.getMainLooper())
 
         intent?.let {
             val bundle: Bundle? = intent.extras
 
-            val nftUrl = bundle?.get("nftUrl")
-            val nftId = bundle?.get("nftId") as String
-            val dircache="/data/user/0/com.greenaddress.greenbits_android_wallet.dev/cache/images/"
-            val executor = Executors.newSingleThreadExecutor()
-            val handler = Handler(Looper.getMainLooper())
-            val file= File("$dircache$nftId.png")
-            println(file)
-            if(file.exists())
-            {
-                println("file già presente nella cache")
-                val image=BitmapFactory.decodeFile(file.toString())
-                handler.post {
-                    nftView.setImageBitmap(image)
-                }
-            }else{
-                println("file non esiste")
-                executor.execute{
-                    try {
-                        val `in` = java.net.URL(nftUrl as String?).openStream()
-                        val image = BitmapFactory.decodeStream(`in`)
-                        println("image $image")
-                        println("NftID $nftId")
-                        val uri=Cache().saveToCacheAndGetUri(image,nftId)
-                        println("questo uri della cache $uri")
-
-                        handler.post {
-                            nftView.setImageBitmap(image)
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-
-                    }
-                }
-
+            val uri = bundle?.get("uri")
+            handler.post {
+                val image=BitmapFactory.decodeFile(uri.toString())
+                nftView.setImageBitmap(image)
             }
-            //CONTROLLO SE L'IMMAGINE DI QUELL'ASSET E' PRESENTE NELLA CACHE
-
-            //SE NON C'E' ESEGUI IL CODICE QUA SOTTO
-
         }
     }
 }
