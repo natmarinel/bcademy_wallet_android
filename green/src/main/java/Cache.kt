@@ -12,9 +12,6 @@ import java.io.IOException
 
 /**
  * Save a file in the App cache and get Uri for it
- *
- * @author Ivan V on 12.05.2019.
- * @version 1.0
  */
 class Cache {
 

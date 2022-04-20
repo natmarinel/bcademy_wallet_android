@@ -101,22 +101,30 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         val file = File("$dircache$assetId$FILE_EXTENSION")
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
-        //DA QUI DEVE ESSERCI IL CONTROLLO
-
         val BASE_URL = "https://btender.bcademy.xyz/"
         println("dentro il try")
         if (file.exists()) {
             println("file già presente nella cache")
             val image = BitmapFactory.decodeFile(file.toString())
             handler.post {
-
+                println(asset)
+                println(asset?.description)
                 binding.nftcontent.visibility = View.VISIBLE
-                binding.nftcontent.setImageBitmap(image)
+                binding.nftname.visibility=View.VISIBLE
+                binding.nftname.text = asset?.name
 
+                binding.nftcontent.setImageBitmap(image)
+                binding.nftname.setOnClickListener{
+                    val intent = Intent(context?.applicationContext, NftViewer::class.java)
+                    intent.putExtra("uri", file)
+                    intent.putExtra("asset",asset)
+                    startActivity(intent)
+                }
                 binding.nftcontent.setOnClickListener {
                     println("click")
                     val intent = Intent(context?.applicationContext, NftViewer::class.java)
                     intent.putExtra("uri", file)
+                    intent.putExtra("asset",asset)
                     startActivity(intent)
                 }
             }
@@ -133,9 +141,16 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 val nftContract = jsonObject.getJSONObject("nftContract")
                 val media = nftContract.getJSONObject("media")
                 val fileUrl = media.getString("fileUrl")
+
+
                 nftContract.let {
                     val nftUrl = BASE_URL + fileUrl
                     executor.execute {
+                        val meta = nftContract.getJSONArray("meta")
+                        val n = meta.getJSONObject(0)
+                        val description = n.getString("description")
+                        asset?.description=description
+                        println("description di setting ${asset?.description}")
                         val `in` = java.net.URL(nftUrl as String?).openStream()
                         val image = BitmapFactory.decodeStream(`in`)
                         val uri = Cache().saveToCacheAndGetUri(image, assetId)
@@ -144,11 +159,19 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                             println("Sto per settare immagine")
                             binding.nftcontent.setImageBitmap(image)
                             binding.nftcontent.visibility = View.VISIBLE
+                            binding.nftname.visibility=View.VISIBLE
+                            binding.nftname.text = asset?.name
+                            binding.nftname.setOnClickListener{
+                                val intent = Intent(context?.applicationContext, NftViewer::class.java)
+                                intent.putExtra("uri", file)
+                                intent.putExtra("asset",asset)
+                                startActivity(intent)
+                            }
                             binding.nftcontent.setOnClickListener {
                                 println("click")
-                                val intent =
-                                    Intent(context?.applicationContext, NftViewer::class.java)
-                                intent.putExtra("uri", uri)
+                                val intent =Intent(context?.applicationContext, NftViewer::class.java)
+                                intent.putExtra("uri", file)
+                                intent.putExtra("asset", asset)
                                 startActivity(intent)
                             }
                         }
