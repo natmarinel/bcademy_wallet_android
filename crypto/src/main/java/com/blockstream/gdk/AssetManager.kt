@@ -80,6 +80,43 @@ class AssetManager(
     fun hasAssetIcon(assetId: String): Boolean = getAssetIcon(assetId) != null
 
     fun getAssetDrawableOrNull(assetId: String): Drawable? {
+        when{
+            assetId=="ca733301ae5b406d66f3a6a55f9d61917f24acc54641becaab1be478bba8e826" ->{
+                return context.getDrawable((R.drawable.nfticon))
+            }
+            else ->{
+                getAssetIcon(assetId)?.let {
+                    return BitmapDrawable(context.resources, it)
+                }
+            }
+        }
+
+        // CONTROLLO SE L'ASSET ID CORRISPONDE AL ID DEL NFT ALLORA RETURN CONTEXT. GETDRWABLE(R.DRAWBLE.NOMEIMMAGINE)  SALVARE FILE DENTRO CRYPTO SRC MAIN RES DRAWABLE ANCHE IN PNG NESSUN PROBLEMA
+        /*     if (assetId == "77961c27eba8fb63b1f966000b49e0e1561349cb0cf459d111acbf895b5251db") {
+            return context.getDrawable(R.drawable.asset_77961c27eba8fb63b1f966000b49e0e1561349cb0cf459d111acbf895b5251db)
+        } else {
+            getAssetIcon(assetId)?.let {
+                return BitmapDrawable(context.resources, it)
+            }
+        }
+        when {
+                Network.isMainnet(session.network.id) -> {
+                    R.drawable.ic_bitcoin_network_60
+                }
+                Network.isLiquid(session.network.id) -> {
+                    R.drawable.ic_liquid_network_60
+                }
+                Network.isTestnet(session.network.id) -> {
+                    R.drawable.ic_bitcoin_testnet_network_60
+                }
+                Network.isTestnetLiquid(session.network.id) -> {
+                    R.drawable.ic_liquid_testnet_network_60
+                }
+                else -> {
+                    R.drawable.ic_unknown_asset_60
+                }
+            }
+        */
         getAssetIcon(assetId)?.let {
             return BitmapDrawable(context.resources, it)
         }
