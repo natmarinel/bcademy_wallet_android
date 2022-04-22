@@ -102,8 +102,18 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
         val BASE_URL = "https://btender.bcademy.xyz/"
+        val json = Api().getJsonString(assetId)
+        Thread.sleep(1_000)
+        println("json $json")
         println("dentro il try")
         if (file.exists()) {
+            val jsonObject = JSONObject(json.take().toString())
+            println("jsonObject $jsonObject")
+            val nftContract = jsonObject.getJSONObject("nftContract")
+            val meta = nftContract.getJSONArray("meta")
+            val n = meta.getJSONObject(0)
+            val description = n.getString("description")
+            asset?.description=description
             println("file già presente nella cache")
             val image = BitmapFactory.decodeFile(file.toString())
             handler.post {
@@ -131,9 +141,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
 
         } else {
             println("file non esiste")
-            val json = Api().getJsonString(assetId)
-            Thread.sleep(1_000)
-            println("json $json")
+
 
             if (json.isNotEmpty()) {
                 val jsonObject = JSONObject(json.take().toString())
