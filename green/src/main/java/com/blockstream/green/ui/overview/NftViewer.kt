@@ -15,8 +15,10 @@ import android.webkit.WebView
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.blockstream.gdk.data.Asset
+import com.blockstream.green.BuildConfig
 import com.blockstream.green.GreenApplication.Companion.context
 import com.blockstream.green.R
 import com.blockstream.green.ui.items.AttachmentListItem
@@ -24,6 +26,10 @@ import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.GenericItem
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
 import com.mikepenz.fastadapter.ui.utils.StringHolder
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 
@@ -129,18 +135,39 @@ class NftViewer : AppCompatActivity() {
                 for((key, value) in it) {
                     var attachmentFile = File(assetDirectory, key)
                     val attachmentName = StringHolder(key)
-                    var textButton: StringHolder
+                    var textButton: StringHolder =StringHolder("")
                     var onClickListener: View.OnClickListener
 
                     if (attachmentFile.exists()) {
+                        val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID +".provider",attachmentFile)
+
                         onClickListener = View.OnClickListener {
-                            startActivity(Intent().setDataAndType(Uri.fromFile(attachmentFile), "*/*"))
+                            startActivity(
+                                Intent(Intent.ACTION_VIEW).apply {
+                                    setDataAndType(uri,"*/*")
+                                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                }
+                            )
                         }
                         textButton = StringHolder(R.string.id_open)
                     } else {
                         onClickListener = View.OnClickListener {
-                            attachmentFile = downloadFile("${BtenderApi.BASE_URL}$value", attachmentFile.absolutePath)
-                            startActivity(Intent().setDataAndType(Uri.fromFile(attachmentFile), "*/*"))
+                            CoroutineScope(Dispatchers.IO).launch {
+                                attachmentFile = downloadFile(
+                                    "${BtenderApi.BASE_URL}$value",
+                                    attachmentFile.absolutePath
+                                )
+                                withContext(Dispatchers.Main) {
+                                    val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID +".provider",attachmentFile)
+                                    startActivity(
+                                        Intent(Intent.ACTION_VIEW).apply {
+                                            setDataAndType(uri,"*/*")
+                                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                                        }
+                                    )
+                                }
+                            }
+
                         }
                         textButton = StringHolder(R.string.id_download)
                     }
