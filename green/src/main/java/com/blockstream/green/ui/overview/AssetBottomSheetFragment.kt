@@ -109,7 +109,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         //assetId = "1668fb5b9cd93544b8e0462a72b642b719f5cdbdcb787bf924e3417dab3a8303" // nft video
         //assetId = "21f9a48d64e76e6173fb8396041c978f39d3dccd78e1279cdbbe195df4f62f66" // nft gif
         //assetId = "582c4561fc34306661496abda13b30a254fcfeda0b3a16b3194f681ee8b17e53" // btender asset but with nftContract: null
-        //assetId = "d8f6cbfa18294451ea73b3e1d91c3c77c8f7211b888e92373acd4baca566b302" // with icon and attachments
+        assetId = "d8f6cbfa18294451ea73b3e1d91c3c77c8f7211b888e92373acd4baca566b302" // with icon and attachments
 
         CoroutineScope(Dispatchers.IO).launch {
             val json = BtenderApi.getAssetJson(assetId)
@@ -164,7 +164,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
 
                 attachments?.let {
                     asset?.attachments = hashMapOf()
-                    for (i in 0 until it.length() - 1) {
+                    for (i in 0 until it.length()) {
                         val attachmentName = it.getJSONObject(i).getString("name")
                         val attachmentUrl = it.getJSONObject(i).getString("fileUrl")
                         asset?.attachments?.put(attachmentName, attachmentUrl)
@@ -234,8 +234,10 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                     listOf(binding.nftImage, binding.nftVideo, binding.nftGif).forEach {
                         run {
                             it.setOnClickListener {
+                                dismiss()
                                 startActivity(
                                     Intent(context, NftViewer::class.java).apply {
+                                        putExtra("assetDirectory", assetDirectory.absolutePath)
                                         putExtra("mediaExtension", mediaExtension)
                                         putExtra("mediaType", mediaType)
                                         putExtra("nftUrl", nftUrl)
