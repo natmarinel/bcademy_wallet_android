@@ -1,14 +1,12 @@
-import androidx.annotation.NonNull
-import kotlinx.coroutines.delay
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.FileNotFoundException
 import java.net.URL
 
-
-object Api {
+object BtenderApi {
     const val BASE_URL = "https://btender.bcademy.xyz"
     const val ASSETS_CONTRACT = "$BASE_URL/api/v1/assets_contract"
+    const val DOMAIN_PAGE = "$BASE_URL/explorer/domain"
 
     fun getAssetString(assetId: String): String? {
         return try {
@@ -23,7 +21,8 @@ object Api {
             JSONObject(getAssetString(assetId))
         } catch(ex: JSONException) {
             null
+        } catch(ex: NullPointerException) {
+            null
         }
     }
 }
-
