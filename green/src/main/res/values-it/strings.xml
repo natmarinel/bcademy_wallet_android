@@ -277,6 +277,7 @@
   <string name="id_double_check_spv_with_other">Double check SPV with other servers</string>
   <string name="id_double_spend">doppia spesa</string>
   <string name="id_double_spend_by">Doppia spesa da</string>
+  <string name="id_download">Scarica</string>
   <string name="id_download_finished">Download terminato</string>
   <string name="id_dust">Dust</string>
   <string name="id_edit">Edit</string>
@@ -596,7 +597,7 @@
   <string name="id_onion_addresses_require_tor">Un indirizzo onion richiede connessione tramite Tor. Abilitala nelle impostazioni di rete dell\' applicazione</string>
   <string name="id_only_connect_to_trusted_nodes">Connettiti solo a nodi fidati per SPV</string>
   <string name="id_only_this_time">Solo questa volta</string>
-  <string name="id_open">Open</string>
+  <string name="id_open">Apri</string>
   <string name="id_operation_failure">Operazione fallita</string>
   <string name="id_optimal_if_you_rarely_spend">Optimal if you rarely spend coins. Wallet coins will require two-factor reactivation every 455 days to remain protected by two-factor authentication</string>
   <string name="id_optimal_if_you_spend_coins">Optimal if you spend coins every 6 months. Wallet coins will require two-factor reactivation every 6 months to remain protected by two-factor authentication.</string>

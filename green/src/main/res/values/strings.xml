@@ -278,6 +278,7 @@
   <string name="id_double_check_spv_with_other">Double check SPV with other servers</string>
   <string name="id_double_spend">double spend</string>
   <string name="id_double_spend_by">Double spend by</string>
+  <string name="id_download">Download</string>
   <string name="id_download_finished">Download finished</string>
   <string name="id_dust">Dust</string>
   <string name="id_edit">Edit</string>
