@@ -1,105 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-
-    </data>
-
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:background="@drawable/nft_background"
         android:orientation="vertical">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_margin="24dp"
-                android:text="@string/id_asset_details"
-                android:textAppearance="?attr/textAppearanceHeadline2"
-                app:layout_constraintEnd_toStartOf="@+id/buttonClose"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                android:id="@+id/buttonClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_close"
-                android:padding="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/title" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
         <ImageView
-            android:id="@+id/nft"
+            android:id="@+id/buttonClose"
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:padding="8dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:layout_marginEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@string/id_nft_details"
+            android:textAppearance="?attr/textAppearanceHeadline2"
+            app:layout_constraintEnd_toStartOf="@+id/buttonClose"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/nftname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_margin="24dp"
-            android:textAppearance="?attr/textAppearanceHeadline2"
-            app:layout_constraintStart_toStartOf="@id/nft"
-            app:layout_constraintTop_toBottomOf="@id/nft" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="WebViewLayout"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/nftdomain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_margin="24dp"
-            android:textAppearance="?attr/textAppearanceHeadline2"
-            app:layout_constraintStart_toStartOf="@id/nftname"
-            app:layout_constraintTop_toBottomOf="@id/nftname" />
+                <WebView
+                    android:id="@+id/nftGif"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    android:layerType="software"/>
 
-        <TextView
-            android:id="@+id/nftid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_margin="24dp"
-            android:textAppearance="?attr/textAppearanceHeadline2"
-            app:layout_constraintStart_toStartOf="@id/nftdomain"
-            app:layout_constraintTop_toBottomOf="@id/nftdomain" />
+                <ImageView
+                    android:id="@+id/nftImage"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="24dp"/>
 
-        <TextView
-            android:id="@+id/nftdescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_margin="24dp"
-            android:textAppearance="?attr/textAppearanceHeadline2"
-            app:layout_constraintStart_toStartOf="@id/nftid"
-            app:layout_constraintTop_toBottomOf="@id/nftid" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp">
+                    <VideoView
+                        android:id="@+id/nftVideo"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="500dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true" />
+                </FrameLayout>
 
-    </LinearLayout>
-</ScrollView>
+                <TextView
+                    android:id="@+id/nftname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="Title"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/showmorewrapper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/nftdomain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="org.domain.com"
+                        android:textSize="18sp"
+                        android:textStyle="italic"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/showmore"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
+                    <TextView
+                        android:id="@+id/showmore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:alpha="0.75"
+                        android:text="@string/id_show_more"
+                        android:textSize="18sp"
+                        android:textStyle="italic"
+                        app:layout_constraintBottom_toBottomOf="@id/nftdomain"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/nftdomain" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/nftid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:text="0xs0f8jam0KS09320scam0KSN29m0KSN9LLKA2028E32"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/nftdescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="6sp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam si amitti vita beata potest, beata esse non potest. Quod autem magnum dolorem brevem, longinquum levem esse dicitis, id non intellego quale sit. Lorem ipsum dolor sit amet, consecteturconsectetur adipiscing elit. Nam si amitti vita beata potest, beata esse non potest. Quod autem magnum dolorem brevem, longinquum levem esse dicitis, id non intellego quale sit. Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam si amitti vita beata potest, beata esse non potest. Quod autem magnum dolorem brevem, longinquum levem esse dicitis, id non intellego quale sit. Lorem ipsum dolor sit amet,"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/nftAttachments"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="24dp"
+                    android:text="@string/id_attachments"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingTop="24dp"
+                    android:paddingBottom="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
