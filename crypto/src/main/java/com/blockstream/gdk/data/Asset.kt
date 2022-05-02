@@ -17,7 +17,9 @@ data class Asset constructor(
     @SerialName("precision") val precision: Int = 0,
     @SerialName("ticker") val ticker: String? = null,
     @SerialName("entity") val entity: Entity = Entity(""),
-    @SerialName("description") var description: String? =null,
+    @SerialName("nft") var nft: String? = null,
+    @SerialName("description") var description: String? = null,
+    @SerialName("attachments") var attachments: MutableMap<String, String>? = null
 ) : GAJson<Asset>(), Parcelable{
 
     override fun kSerializer() = serializer()
