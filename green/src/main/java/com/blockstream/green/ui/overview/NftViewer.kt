@@ -127,27 +127,24 @@ class NftViewer : AppCompatActivity() {
             viewNftId.text = asset?.assetId
             viewNftDescription.text = asset?.description
 
-            val attachmentList = mutableListOf<GenericItem>()
-
             asset?.attachments?.let {
                 findViewById<TextView>(R.id.nftAttachments).visibility = View.VISIBLE
+                val attachmentList = mutableListOf<GenericItem>()
 
-                for((key, value) in it) {
+                for ((key, value) in it) {
                     var attachmentFile = File(assetDirectory, key)
                     val attachmentName = StringHolder(key)
-                    var textButton: StringHolder =StringHolder("")
+                    var textButton: StringHolder
                     var onClickListener: View.OnClickListener
+                    val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", attachmentFile)
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        setDataAndType(uri,"*/*")
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    }
 
                     if (attachmentFile.exists()) {
-                        val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID +".provider",attachmentFile)
-
                         onClickListener = View.OnClickListener {
-                            startActivity(
-                                Intent(Intent.ACTION_VIEW).apply {
-                                    setDataAndType(uri,"*/*")
-                                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                }
-                            )
+                            startActivity(intent)
                         }
                         textButton = StringHolder(R.string.id_open)
                     } else {
@@ -158,16 +155,9 @@ class NftViewer : AppCompatActivity() {
                                     attachmentFile.absolutePath
                                 )
                                 withContext(Dispatchers.Main) {
-                                    val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID +".provider",attachmentFile)
-                                    startActivity(
-                                        Intent(Intent.ACTION_VIEW).apply {
-                                            setDataAndType(uri,"*/*")
-                                            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                                        }
-                                    )
+                                    startActivity(intent)
                                 }
                             }
-
                         }
                         textButton = StringHolder(R.string.id_download)
                     }
