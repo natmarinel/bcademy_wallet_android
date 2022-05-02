@@ -80,12 +80,13 @@
   <string name="id_are_you_sure_you_want_to_view">Sei sicuro di voler vedere la transazione usando %s?</string>
   <string name="id_as_easy_as_snapping_a_photo">Facile come fare una foto. Se hai già un wallet, scansiona la tua recovery phrase dalle impostazioni.</string>
   <string name="id_asset">Asset</string>
-  <string name="id_asset_details">Dettaglio Asset</string>
+  <string name="id_asset_details">Dettagli Asset</string>
   <string name="id_asset_icons_are_missing_try">Asset icons are missing, try reloading them.</string>
   <string name="id_asset_id">Asset ID</string>
   <string name="id_asset_name">Nome Asset</string>
   <string name="id_assets">Asset</string>
   <string name="id_assets_cannot_be_used_on_bitcoin">Assets cannot be used on Bitcoin</string>
+  <string name="id_attachments">Allegati</string>
   <string name="id_attempts_remaining_d">Tentativi rimasti: %d</string>
   <string name="id_authenticate_to_view_the">Autenticati per vedere la recovery phrase</string>
   <string name="id_authentication_error_s">Authentication error: %s</string>
@@ -557,6 +558,7 @@
   <string name="id_next">Avanti</string>
   <string name="id_nfc_logo">NFC Logo</string>
   <string name="id_nfc_tags_written">NFC TAGs Written:</string>
+  <string name="id_nft_details">Dettagli NFT</string>
   <string name="id_no_amount_specified">Nessun importo specificato</string>
   <string name="id_no_asset_in_this_account">No asset in this account</string>
   <string name="id_no_attempts_remaining">Nessun tentativo rimasto</string>
@@ -790,6 +792,7 @@
   <string name="id_show_bitcoin_amounts_in">Mostra gli ammontari in bitcoin in</string>
   <string name="id_show_coins_with_expiring">Mostra i coin con Secondo Fattore d\'Autenticazione in scadenza.</string>
   <string name="id_show_fiat">Mostra valuta corrente</string>
+  <string name="id_show_more">(mostra di più)</string>
   <string name="id_show_my_wallet_backup">Mostrami il backup del mio wallet</string>
   <string name="id_show_qr_code">Mostra il QR code</string>
   <string name="id_signature_validation_failed_if">Signature validation failed. If this error is unexpected and has happened repeatedly, it is possible the hardware wallet is faulty or has been compromised. It could be leaking your keys, which could lead to loss of funds. Please consider replacing the hardware wallet.</string>
