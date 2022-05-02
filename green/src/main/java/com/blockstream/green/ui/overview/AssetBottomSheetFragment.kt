@@ -146,11 +146,11 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
 
                 if (!nftFile.exists()) {
                     nftFile = downloadFile("${BtenderApi.BASE_URL}$nftUrl", nftFile.absolutePath)
-                    asset?.nft = nftFile.absolutePath
                     println("Download NFT $filename")
                 } else {
                     println("Retrieve NFT $filename from cache")
                 }
+                asset?.nft = nftFile.absolutePath
 
                 val meta = nftContract.getJSONArray("meta").getJSONObject(0)
                 asset?.description = meta.getString("description")
