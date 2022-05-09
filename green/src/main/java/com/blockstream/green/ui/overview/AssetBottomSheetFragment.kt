@@ -174,12 +174,14 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 }
 
                 withContext(Dispatchers.Main) {
+                    binding.progress.show()
                     when (mediaType) {
                         "image" -> {
                             when (mediaExtension) {
                                 "gif" -> {
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                                         binding.nftImage.apply {
+                                            binding.progress.hide()
                                             visibility = View.VISIBLE
                                             val decodedBitmap = ImageDecoder.createSource(nftFile)
                                             val decodedDrawable = ImageDecoder.decodeDrawable(decodedBitmap)
@@ -189,6 +191,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                                         }
                                     } else {
                                         binding.nftGif.apply {
+                                            binding.progress.hide()
                                             visibility = View.VISIBLE
                                             setBackgroundColor(Color.TRANSPARENT)
                                             // Technique: display a gif with WebView in order to avoid the use of external libraries or gif dependencies
@@ -204,6 +207,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                                 }
                                 else -> {
                                     binding.nftImage.apply {
+                                        binding.progress.hide()
                                         visibility = View.VISIBLE
                                         val image = BitmapFactory.decodeFile(asset?.nft)
                                         setImageBitmap(image)
@@ -213,6 +217,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                         }
                         "video" -> {
                             binding.nftVideo.run {
+                                binding.progress.hide()
                                 visibility = View.VISIBLE
                                 setVideoPath(asset?.nft)
                                 setOnPreparedListener {
@@ -253,6 +258,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
             }
             else {
                 Handler(Looper.getMainLooper()).post {
+                    binding.progress.hide()
                     val itemAdapter = FastItemAdapter<GenericItem>()
                     itemAdapter.add(list)
                     binding.recycler.apply {
