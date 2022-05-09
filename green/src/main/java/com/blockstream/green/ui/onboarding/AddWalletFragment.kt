@@ -58,7 +58,7 @@ class AddWalletFragment :
         }
 
         binding.termsLink.setOnClickListener {
-            openBrowser(settingsManager.getApplicationSettings(), Urls.TERMS_OF_SERVICE)
+            openBrowser(settingsManager.getApplicationSettings(), "https://bcademy.it/")
         }
     }
 }
