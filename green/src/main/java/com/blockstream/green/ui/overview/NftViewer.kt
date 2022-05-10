@@ -57,7 +57,8 @@ class NftViewer : AppCompatActivity() {
             val mediaExtension = bundle?.get("mediaExtension") as String
             val nftUrl = bundle?.get("nftUrl") as String
             val nftFile = File(asset?.nft)
-
+            val contentType = bundle?.get("contentType") as String
+            
             when (mediaType) {
                 "image" -> {
                     when (mediaExtension) {
@@ -138,10 +139,9 @@ class NftViewer : AppCompatActivity() {
                     var onClickListener: View.OnClickListener
                     val uri = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", attachmentFile)
                     val intent = Intent(Intent.ACTION_VIEW).apply {
-                        setDataAndType(uri,"*/*")
+                        setDataAndType(uri,contentType)
                         addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     }
-
                     if (attachmentFile.exists()) {
                         onClickListener = View.OnClickListener {
                             startActivity(intent)

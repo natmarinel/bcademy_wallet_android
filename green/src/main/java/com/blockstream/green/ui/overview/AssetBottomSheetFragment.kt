@@ -110,6 +110,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         //assetId = "21f9a48d64e76e6173fb8396041c978f39d3dccd78e1279cdbbe195df4f62f66" // nft gif
         //assetId = "582c4561fc34306661496abda13b30a254fcfeda0b3a16b3194f681ee8b17e53" // btender asset but with nftContract: null
         //assetId = "d8f6cbfa18294451ea73b3e1d91c3c77c8f7211b888e92373acd4baca566b302" // with icon and attachments
+        //assetId = "1b363cd75d95c30933b3c9e4d71d28fbf176966a6224d081611e3335af645a03" //with pdf attachment
 
         CoroutineScope(Dispatchers.IO).launch {
             val json = BtenderApi.getAssetJson(assetId)
@@ -135,7 +136,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
 
                 val media = nftContract.getJSONObject("media")
                 val nftUrl = media.getString("fileUrl")
-                val contentType = media.getString("contentType")
+                val contentType = media.getString("contentType").lowercase()
                 val mediaType = contentType.substring(0, contentType.indexOf('/', 0))
                 val mediaExtension =
                     contentType.substring(contentType.indexOf('/', 0) + 1, contentType.length)
@@ -247,6 +248,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                                         putExtra("assetDirectory", assetDirectory.absolutePath)
                                         putExtra("mediaExtension", mediaExtension)
                                         putExtra("mediaType", mediaType)
+                                        putExtra("contentType",contentType)
                                         putExtra("nftUrl", nftUrl)
                                         putExtra("asset", asset)
                                     }
