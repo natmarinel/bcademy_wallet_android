@@ -58,7 +58,7 @@ class NftViewer : AppCompatActivity() {
             val nftUrl = bundle?.get("nftUrl") as String
             val nftFile = File(asset?.nft)
             val contentType = bundle?.get("contentType") as String
-            
+
             when (mediaType) {
                 "image" -> {
                     when (mediaExtension) {

@@ -111,7 +111,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
         //assetId = "582c4561fc34306661496abda13b30a254fcfeda0b3a16b3194f681ee8b17e53" // btender asset but with nftContract: null
         //assetId = "d8f6cbfa18294451ea73b3e1d91c3c77c8f7211b888e92373acd4baca566b302" // with icon and attachments
         //assetId = "1b363cd75d95c30933b3c9e4d71d28fbf176966a6224d081611e3335af645a03" //with pdf attachment
-
+        binding.progress.hide()
         CoroutineScope(Dispatchers.IO).launch {
             val json = BtenderApi.getAssetJson(assetId)
             val nftContract: JSONObject? = try {
@@ -120,6 +120,7 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 println("Btender asset without NFT { nftContract: null }")
                 null
             }
+
 
             if(nftContract != null) {
                 val nftDirectory = File(context?.cacheDir, "NFT") // save in cache app directory
@@ -146,8 +147,12 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 var nftFile = File(assetDirectory, filename)
 
                 if (!nftFile.exists()) {
-                    nftFile = downloadFile("${BtenderApi.BASE_URL}$nftUrl", nftFile.absolutePath)
-                    println("Download NFT $filename")
+                    withContext(Dispatchers.Main) {
+                        binding.progress.show()
+                    }
+                        nftFile = downloadFile("${BtenderApi.BASE_URL}$nftUrl", nftFile.absolutePath)
+                        println("Download NFT $filename")
+
                 } else {
                     println("Retrieve NFT $filename from cache")
                 }
@@ -175,7 +180,8 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 }
 
                 withContext(Dispatchers.Main) {
-                    binding.progress.show()
+
+
                     when (mediaType) {
                         "image" -> {
                             when (mediaExtension) {
@@ -259,8 +265,8 @@ class AssetBottomSheetFragment : WalletBottomSheetDialogFragment<AssetDetailsBot
                 }
             }
             else {
+
                 Handler(Looper.getMainLooper()).post {
-                    binding.progress.hide()
                     val itemAdapter = FastItemAdapter<GenericItem>()
                     itemAdapter.add(list)
                     binding.recycler.apply {
